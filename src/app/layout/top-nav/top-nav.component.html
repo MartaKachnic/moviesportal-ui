@@ -1,0 +1,11 @@
+<mat-toolbar color="white">
+  <div>
+    <a routerLink="/" mat-fab color="white">
+      <mat-icon>movie</mat-icon>
+    </a>
+    <a routerLink="/movies" mat-raised-button class="ml-1" >Baza filmów</a>
+      <a class="row end-xs mt-1" *ngIf="!isLoggedIn" routerLink="login" mat-raised-button >Zaloguj</a>
+    <a routerLink="register" mat-raised-button class="mr-1">Zarejestruj</a>
+    <a mat-raised-button class="col-xs-12 row end-xs" *ngIf="isLoggedIn" (click)="logout()">Wyloguj</a>
+      </div>
+</mat-toolbar>

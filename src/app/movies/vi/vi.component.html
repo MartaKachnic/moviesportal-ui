@@ -1,0 +1,97 @@
+<div class="page-header">
+  <div class ="container">
+    <h1>{{header}}</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <!--Details -->
+      <form #movieDetailsForm="ngForm">
+      <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+            <mat-label>Tytuł</mat-label>
+            <input type="text" matInput [(ngModel)]="movie.title" name="title" required>
+            <mat-error>Tytuł jest wymagany</mat-error>
+          </mat-form-field>
+      </div>
+      <div class="col-xs-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Reżyser</mat-label>
+          <input type="text" matInput [(ngModel)]="movie.director" name="director" required>
+          <mat-error>Reżyser jest wymagany</mat-error>
+        </mat-form-field>
+      </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Opis</mat-label>
+              <textarea matInput [(ngModel)]="movie.description" name="description" required></textarea>
+              <mat-error>Opis jest wymagany</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Plakat (adres URL)</mat-label>
+              <input type="text" matInput [(ngModel)]="movie.poster" name="poster" required>
+              <mat-error>Plakat jest wymagany</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Gatunek</mat-label>
+              <mat-select [(ngModel)]="movie.genreId" name="genre" required>
+                <mat-error>Gatunek jest wymagany</mat-error>
+                <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+                  {{genre.name}}
+                </mat-option>
+
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Data wydania</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="movie.releaseDate" name="releaseDate" required>
+              <mat-error>Data wydania jest wymagana</mat-error>
+              <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="ml-1">
+            <div class="row between-xs" *ngIf="!isNewMovie">
+            <button mat-raised-button color="primary" (click)="onUpdate()"> Zapisz</button>
+            <button class="ml-1" mat-raised-button color="primary" (click)="onDelete()"> Usuń</button>
+          </div>
+          <div class="row between-xs" *ngIf="isNewMovie">
+          <button mat-raised-button color="primary" (click)="onAdd()"> Zapisz</button>
+        </div>
+        </div>
+      </div>
+        </form>
+      </div>
+      <div class="col-xs-6">
+        <!-- Image -->
+
+      </div>
+    </div>
+  </div>
+

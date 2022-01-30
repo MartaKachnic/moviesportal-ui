@@ -1,0 +1,58 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+      <div class="center" >
+    <label for="zaloguj" >Zaloguj się</label>
+      </div>
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate>
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Adres e-mail</mat-label>
+        <input matInput type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel">
+        <mat-error *ngIf="email.errors && f.submitted"> Wpisz adres e-mail</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Hasło</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" name="password"
+        [(ngModel)]="form.password"
+        required
+        #password="ngModel">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error  *ngIf="password.errors && f.submitted"> Wpisz hasło</mat-error>
+      </mat-form-field>
+    </div>
+
+      <div class="center-2">
+        <button mat-raised-button class="btn btn-primary btn-block" color="primary">Zaloguj </button>
+      </div>
+      <div class="center-3">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed">
+          <mat-error> Nieprawidłowe dane logowania!</mat-error>
+        </div>
+      </div>
+
+    </form>
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+      Jesteś zalogowany
+
+    </div>
+
+
+  </div>
+</div>

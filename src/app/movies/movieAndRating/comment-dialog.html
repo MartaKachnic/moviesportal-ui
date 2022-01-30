@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Dodaj komentarz</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Tytuł</mat-label>
+    <input type="text" matInput [(ngModel)]="data.title" name="title" required>
+    <mat-error>Tytuł jest wymagany</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Treść</mat-label>
+    <textarea matInput [(ngModel)]="data.comment" name="comment" required></textarea>
+    <mat-error>Treść jest wymagana</mat-error>
+  </mat-form-field>
+  <form [formGroup]="form">
+    <div class="cont">
+    <div class="stars">
+      <ngx-star-rating formControlName="rating1" [id]="'rating'"></ngx-star-rating>
+    </div>
+    <div>Ocena: {{form.value.rating1}}/5</div>
+  </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Anuluj</button>
+  <button mat-raised-button [mat-dialog-close]="data.title" [mat-dialog-close]="data.comment" (click)="onCommentAdd()">Dodaj</button>
+</div>
+

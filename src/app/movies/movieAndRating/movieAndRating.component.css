@@ -1,0 +1,79 @@
+.top-row{
+  padding: 1em 0;
+}
+
+.mat-form-field{
+  width: 100%;
+}
+.movieview-container {
+  display: flex;
+  justify-content: center;
+}
+.commentsview-container {
+  margin-top: 25px;
+  width: 70%;
+  border-top: 1px solid;
+}
+.movieview {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  width: 900px;
+}
+.movieview-image {
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  padding-right: 15px;
+  flex: 5;
+}
+.movieview-details {
+  font-family: system-ui;
+  padding-left: 15px;
+  flex: 7;
+}
+.comm1 {
+  font-family: system-ui;
+  padding-left: 15px;
+  flex: 7;
+}
+.comm2 {
+  font-family: system-ui;
+  padding-left: 15px;
+  flex: 7;
+}
+.movieview-name h1 {
+  margin-top: 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 10px 0;
+}
+.movieview-synopsis-cnt h2 {
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
+}
+.cont {
+  width: 70%;
+  height: 40px;
+  max-width: 280px;
+  text-align: center;
+  padding: 25px 0;
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+}
+
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
+.textarea {
+  resize: none;
+}
+
+    .card {
+      margin-top: 16px;
+    }
+
+

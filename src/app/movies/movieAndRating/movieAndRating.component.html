@@ -1,0 +1,88 @@
+<div class="page-header">
+  <div class="container">
+    <h1>{{ header }}</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+
+    </div>
+  </div>
+
+  <div class="movieview-container">
+    <div class="movieview">
+      <div
+        class="movieview-image"
+        style="
+          background-image: url('{{movie.poster}}');
+        "
+      >
+    </div>
+      <div class="movieview-details">
+        <div class="movieview-name">
+          <h1>{{ movie.title }} ({{ movie.releaseDate | date: "yyyy" }})</h1>
+        </div>
+        <div style="padding: 5px 0">
+          <span>
+            <a [routerLink]="['/movies/edit', movie.id]">
+              <button mat-raised-button>Edytuj</button>
+            </a>
+
+            <button mat-raised-button class="ml-1" (click)="onDelete()">
+              Usuń
+            </button>
+          </span>
+        </div>
+        <div style="padding: 5px 0">
+          <span> Reżyseria: {{ movie.director }}</span>
+        </div>
+        <div style="padding: 5px 0">
+          <span> Gatunek: {{ movie.genre.name }}</span>
+        </div>
+        <div style="padding: 5px 0">
+          <span>Premiera: {{ movie.releaseDate | date: "dd-MM-yyyy" }}</span>
+        </div>
+        <div class="movieview-synopsis-cnt">
+          <h2>Szczegóły</h2>
+          <div class="movie-synopsis">{{ movie?.description }}</div>
+        </div>
+      </div>
+    </div>
+    <ng-container #vcRef></ng-container>
+    <ng-template #modalRef>
+      <app-editmovie (closeDialog)="onUpdate()" [movie]="movie"></app-editmovie>
+    </ng-template>
+  </div>
+
+  <div style="padding: 5px 0">
+    <div>
+      <h1 class="ml-1">
+        <button class="mr-1" mat-mini-fab color="white" *ngIf="isLoggedIn" (click)="openDialog()">  <mat-icon>add</mat-icon></button>
+
+        KOMENTARZE
+
+      </h1>
+      <h3 class="ml-1" *ngIf="!isLoggedIn">Aby dodać komentarz, <a [routerLink]="['/login']" style="color: inherit; font-weight: 400;">
+        zaloguj się.
+      </a></h3>
+    </div>
+  </div>
+  <div>
+    <form name="form">
+
+        <div class="comm1">
+          <div style="padding: 5px 0">
+            <app-article-comment
+              *ngFor="let movieRating of movieRatings"
+              [movieRating]="movieRating"
+              (deleteComment)="onDeleteComment(movieRating)"
+            >
+            </app-article-comment>
+          </div>
+
+      </div>
+    </form>
+  </div>
+</div>

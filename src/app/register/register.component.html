@@ -1,0 +1,90 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <div class="center" >
+      <label for="zarejestruj" >Zarejestruj się</label>
+        </div>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel">
+        <mat-error *ngIf="username.errors && f.submitted">
+          <mat-error *ngIf="username.errors['required']"> Wpisz nazwę użytkownika</mat-error>
+          <mat-error *ngIf="username.errors['minlength']">Nazwa użytkownika musi składać się z co najmniej 3 znaków</mat-error>
+          <mat-error *ngIf="username.errors['maxlength']">Nazwa użytkownika musi składać się z maksymalnie 20 znaków</mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+        <div class="example-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Adres e-mail</mat-label>
+            <input matInput type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel">
+            <mat-error *ngIf="email.errors && f.submitted">
+              <mat-error *ngIf="email.errors['required']"> Wpisz adres e-mail</mat-error>
+              <mat-error *ngIf="email.errors['email']">Nieprawidłowy adres e-mail</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Hasło</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.errors && f.submitted">
+              <mat-error *ngIf="password.errors['required']"> Wpisz hasło</mat-error>
+              <mat-error *ngIf="password.errors['minlength']">Hasło musi składać się z co najmniej 6 znaków</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Powtórz hasło</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" name="confirmPassword"
+            [(ngModel)]="form.confirmPassword"
+            required
+            minlength="6"
+            #confirmPassword="ngModel">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.errors && f.submitted">
+              <mat-error *ngIf="password.errors['required']"> Powtórz hasło</mat-error>
+              <mat-error *ngIf="password.errors['minlength']">Hasło musi składać się z co najmniej 6 znaków</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      <div class="center-2">
+        <button mat-raised-button class="btn btn-primary btn-block" color="primary">Utwórz konto </button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Nie udało się utworzyć konta!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Rejestracja przebiegła pomyślnie!
+    </div>
+  </div>
+</div>

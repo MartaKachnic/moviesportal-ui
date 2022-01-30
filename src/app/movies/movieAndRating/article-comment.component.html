@@ -1,0 +1,24 @@
+<div class="commentsview-container">
+  <div style="font-weight: bold; margin-top: 10; margin-top: 100;">
+    {{ movieRating.title }}
+  </div>
+  <div>
+    {{ movieRating.comment }}
+  </div>
+  <div style=" display: flex;
+  justify-content: space-between;">
+    <div style="text-align: left">
+      <strong>Ocena:</strong> {{ movieRating?.rating }}
+    </div>
+
+    <div style="text-align: center">
+      <strong>Autor:</strong> {{ movieRating?.user?.username }}
+    </div>
+    <div style="text-align: right">
+      <strong>Data:</strong> {{ movieRating?.publishDate | date: "dd-MM-yyyy HH:mm" }}
+    </div>
+  </div>
+  <span class="mod-options" [hidden]="!canModify">
+    <i class="ion-trash-a" (click)="deleteClicked()"></i>
+  </span>
+</div>

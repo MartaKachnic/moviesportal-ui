@@ -1,0 +1,78 @@
+<div class="page-header">
+  <div class="container">
+    <h1>Filmy</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row end-xs mt-1">
+    <div class="col-xs-12">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Szukaj"
+        [(ngModel)]="filterString"
+        (keyup)="filterMovies()"
+      />
+      <a
+        routerLink="/movies/edit/add"
+        mat-raised-button
+        color="primary"
+        class="ml-1"
+        >Dodaj nowy film</a
+      >
+    </div>
+  </div>
+
+  <div class="mt-1 mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource" class="">
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tytuł</th>
+        <td mat-cell *matCellDef="let element" style="font-size: 16px;">
+          <a [routerLink]="['/movies', element.id]" style="text-decoration: none; color: inherit; font-weight: 400;">
+            {{ element.title }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="director">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Reżyser</th>
+        <td mat-cell *matCellDef="let element">{{ element.director }}</td>
+      </ng-container>
+
+      <!-- Date Of Birth Column -->
+      <ng-container matColumnDef="releaseDate">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Rok wydania</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.releaseDate | date: "yyyy" }}
+        </td>
+      </ng-container>
+
+      <!-- genre Column -->
+      <ng-container matColumnDef="genre">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Gatunek</th>
+        <td mat-cell *matCellDef="let element">{{ element.genre.name }}</td>
+      </ng-container>
+
+      <!-- rating Column -->
+      <ng-container matColumnDef="averageRating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ocena</th>
+        <td mat-cell *matCellDef="let element" style="font-size: 18px;"><mat-icon style="font-size: 18px;">star</mat-icon>{{ element.averageRating }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>
