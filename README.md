@@ -1,4 +1,4 @@
-# MoviesPortal-ui
+# moviesportal-ui
 > A client web application built with Angular.
 
 ## Table of contents
@@ -9,7 +9,7 @@
 
 ## General info
 
-MoviesPortal.ui is a client web application built with Angular. It cooperates with MoviesPortal.API web API. Application displays list of movies and also details of particular movie. User is able to sign into his account or to create a new one. Authenticated is allowed to add movie rating for specific movie.
+Moviesportal.ui is a client web application built with Angular. It cooperates with MoviesPortal.API web API. Application displays list of movies and also details of particular movie. User is able to sign into his account or to create a new one. Authenticated is allowed to add movie rating for specific movie.
 
 ## How to run it locally
 
